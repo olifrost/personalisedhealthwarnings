@@ -1,0 +1,135 @@
+/* Print Styles */
+.print-page {
+    width: 210mm;
+    min-height: 297mm;
+    padding: 20mm;
+    margin: 10mm auto;
+    border: 1px #D3D3D3 solid;
+    border-radius: 5px;
+    background: white;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    font-family: 'Raleway', sans-serif;
+}
+
+.print-labels {
+    margin-top: 2rem;
+}
+
+.print-label-section {
+    width: 100%;
+    height: 25%;
+    display: inline-block;
+    margin-left: auto;
+    margin-bottom: 5rem;
+    margin-right: auto;
+}
+
+.print-label {
+    width: 57mm;
+    height: 40mm;
+    font-size: 26pt;
+    padding: 0;
+    line-height: 110%;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    overflow: hidden;
+    left: 0;
+    bottom: 0;
+    border: 0.75rem solid #000;
+    text-align: center;
+}
+
+.print-label p {
+    margin-top: 5%;
+    margin-bottom: 0;
+    color: #000;
+    font-weight: bold;
+}
+
+.print-namewrapper {
+    width: 50mm;
+    min-height: 12mm;
+    max-height: 12mm;
+    padding-right: 1mm;
+    padding-left: 1mm;
+    margin-right: 0rem !important;
+    display: inline-block;
+    margin: 0;
+    position: relative;
+    bottom: 0.25rem;
+    font-size: 26pt;
+}
+
+.print-name {
+    color: #000;
+    font-weight: bold;
+    display: block;
+    word-wrap: break-word;
+}
+
+.print-footer {
+    color: gray;
+    margin-top: 0%;
+    height: 500px;
+    width: 100%;
+    text-align: center;
+    position: relative;
+}
+
+.print-footer img {
+    margin-top: 2rem;
+    width: 75%;
+    position: absolute;
+    left: 3%;
+    bottom: 25%;
+}
+
+.instruction {
+    position: relative;
+    top: 38rem;
+}
+
+@page {
+    size: A4;
+    margin: 0;
+    color: gray;
+}
+
+@media print {
+    body * {
+        visibility: hidden;
+    }
+
+    #print-view,
+    #print-view * {
+        visibility: visible;
+    }
+
+    #print-view {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        display: block !important;
+    }
+
+    .print-page {
+        margin: 0;
+        border: initial;
+        border-radius: initial;
+        width: initial;
+        min-height: initial;
+        box-shadow: initial;
+        background: initial;
+        page-break-after: always;
+    }
+
+    html,
+    body {
+        width: 210mm;
+        height: 297mm;
+        background-color: white;
+    }
+}

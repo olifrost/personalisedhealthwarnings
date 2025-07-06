@@ -1,12 +1,12 @@
 /* Simple Text Rotator */
 
-!function(a){function f(){a("#namewrapper").css("display","inline-block")}var b,c,d={animation:"dissolve",separator:",",speed:2e3,repeat:!0,text:null,onFinish:function(){}},e=function(){if(1==rotateStop)return c.animation="",clearInterval(b),!1};a.fx.step.textShadowBlur=function(b){e(),a(b.elem).prop("textShadowBlur",b.now).css({textShadow:"0 0 "+Math.floor(b.now)+"px black"})},a.fn.textrotator=function(g){return c=a.extend({},d,g),f(),e(),this.each(function(){e();var d=a(this),f=[],g=c.text||d.text();a.each(g.split(c.separator),function(a,b){f.push(b)}),d.text(f[0]);var h,i=function(){return h=a.inArray(d.text(),f),h+1!=f.length||(h=-1,0!=c.repeat)||(clearInterval(b),c.onFinish(),!1)},j=function(){switch(e(),c.animation){case"dissolve":e(),d.animate({textShadowBlur:20,opacity:0},500,function(){i(),d.text(f[h+1]).animate({textShadowBlur:0,opacity:1},500)});break;case"fade":d.fadeOut(c.speed,function(){i(),d.text(f[h+1]).fadeIn(c.speed)})}};b=setInterval(j,c.speed)})}}(window.jQuery);
+!function (a) { function f() { a("#namewrapper").css("display", "inline-block") } var b, c, d = { animation: "dissolve", separator: ",", speed: 2e3, repeat: !0, text: null, onFinish: function () { } }, e = function () { if (1 == rotateStop) return c.animation = "", clearInterval(b), !1 }; a.fx.step.textShadowBlur = function (b) { e(), a(b.elem).prop("textShadowBlur", b.now).css({ textShadow: "0 0 " + Math.floor(b.now) + "px black" }) }, a.fn.textrotator = function (g) { return c = a.extend({}, d, g), f(), e(), this.each(function () { e(); var d = a(this), f = [], g = c.text || d.text(); a.each(g.split(c.separator), function (a, b) { f.push(b) }), d.text(f[0]); var h, i = function () { return h = a.inArray(d.text(), f), h + 1 != f.length || (h = -1, 0 != c.repeat) || (clearInterval(b), c.onFinish(), !1) }, j = function () { switch (e(), c.animation) { case "dissolve": e(), d.animate({ textShadowBlur: 20, opacity: 0 }, 500, function () { i(), d.text(f[h + 1]).animate({ textShadowBlur: 0, opacity: 1 }, 500) }); break; case "fade": d.fadeOut(c.speed, function () { i(), d.text(f[h + 1]).fadeIn(c.speed) }) } }; b = setInterval(j, c.speed) }) } }(window.jQuery);
 
 /*
 jQuery BigText v1.3.0, May 2014
 */
 
-!function(t){"use strict";var e={rotateText:null,fontSizeFactor:.8,maximumFontSize:null,limitingDimension:"both",horizontalAlign:"center",verticalAlign:"center",textAlign:"center",whiteSpace:"nowrap"};t.fn.bigText=function(i){return this.each(function(){i=t.extend({},e,i);var o=t(this),r=o.parent();o.css("visibility","hidden"),o.css({display:"inline-block",clear:"both","float":"left","font-size":1e3*i.fontSizeFactor+"px","line-height":"1000px","white-space":i.whiteSpace,"text-align":i.textAlign,position:"relative",padding:0,margin:0,left:"50%",top:"50%"});var a={left:parseInt(r.css("padding-left")),top:parseInt(r.css("padding-top")),right:parseInt(r.css("padding-right")),bottom:parseInt(r.css("padding-bottom"))},n={width:o.outerWidth(),height:o.outerHeight()},h={};if(null!==i.rotateText){if("number"!=typeof i.rotateText)throw"bigText error: rotateText value must be a number";var s="rotate("+i.rotateText+"deg)";h={"-webkit-transform":s,"-ms-transform":s,"-moz-transform":s,"-o-transform":s,transform:s},o.css(h);var l=Math.abs(Math.sin(i.rotateText*Math.PI/180)),g=Math.abs(Math.cos(i.rotateText*Math.PI/180));n.width=o.outerWidth()*g+o.outerHeight()*l,n.height=o.outerWidth()*l+o.outerHeight()*g}var m,f=(r.innerWidth()-a.left-a.right)/n.width,c=(r.innerHeight()-a.top-a.bottom)/n.height;"width"===i.limitingDimension.toLowerCase()?(m=Math.floor(1e3*f),r.height(m)):"height"===i.limitingDimension.toLowerCase()?m=Math.floor(1e3*c):c>f?m=Math.floor(1e3*f):f>=c&&(m=Math.floor(1e3*c));var p=m*i.fontSizeFactor;null!==i.maximumFontSize&&p>i.maximumFontSize&&(p=i.maximumFontSize,m=p/i.fontSizeFactor),o.css({"font-size":Math.floor(p)+"px","line-height":Math.ceil(m)+"px","margin-bottom":"0px","margin-right":"0px"}),"height"===i.limitingDimension.toLowerCase()&&r.width(o.width()+4+"px");var d={};switch(i.verticalAlign.toLowerCase()){case"top":d.top="0%";break;case"bottom":d.top="100%",d["margin-top"]=Math.floor(-o.innerHeight())+"px";break;default:d["margin-top"]=Math.floor(-o.innerHeight()/2)+"px"}switch(i.horizontalAlign.toLowerCase()){case"left":d.left="0%";break;case"right":d.left="100%",d["margin-left"]=Math.floor(-o.innerWidth())+"px";break;default:d["margin-left"]=Math.floor(-o.innerWidth()/2)+"px"}o.css(d),o.css("visibility","visible")})}}(jQuery);
+!function (t) { "use strict"; var e = { rotateText: null, fontSizeFactor: .8, maximumFontSize: null, limitingDimension: "both", horizontalAlign: "center", verticalAlign: "center", textAlign: "center", whiteSpace: "nowrap" }; t.fn.bigText = function (i) { return this.each(function () { i = t.extend({}, e, i); var o = t(this), r = o.parent(); o.css("visibility", "hidden"), o.css({ display: "inline-block", clear: "both", "float": "left", "font-size": 1e3 * i.fontSizeFactor + "px", "line-height": "1000px", "white-space": i.whiteSpace, "text-align": i.textAlign, position: "relative", padding: 0, margin: 0, left: "50%", top: "50%" }); var a = { left: parseInt(r.css("padding-left")), top: parseInt(r.css("padding-top")), right: parseInt(r.css("padding-right")), bottom: parseInt(r.css("padding-bottom")) }, n = { width: o.outerWidth(), height: o.outerHeight() }, h = {}; if (null !== i.rotateText) { if ("number" != typeof i.rotateText) throw "bigText error: rotateText value must be a number"; var s = "rotate(" + i.rotateText + "deg)"; h = { "-webkit-transform": s, "-ms-transform": s, "-moz-transform": s, "-o-transform": s, transform: s }, o.css(h); var l = Math.abs(Math.sin(i.rotateText * Math.PI / 180)), g = Math.abs(Math.cos(i.rotateText * Math.PI / 180)); n.width = o.outerWidth() * g + o.outerHeight() * l, n.height = o.outerWidth() * l + o.outerHeight() * g } var m, f = (r.innerWidth() - a.left - a.right) / n.width, c = (r.innerHeight() - a.top - a.bottom) / n.height; "width" === i.limitingDimension.toLowerCase() ? (m = Math.floor(1e3 * f), r.height(m)) : "height" === i.limitingDimension.toLowerCase() ? m = Math.floor(1e3 * c) : c > f ? m = Math.floor(1e3 * f) : f >= c && (m = Math.floor(1e3 * c)); var p = m * i.fontSizeFactor; null !== i.maximumFontSize && p > i.maximumFontSize && (p = i.maximumFontSize, m = p / i.fontSizeFactor), o.css({ "font-size": Math.floor(p) + "px", "line-height": Math.ceil(m) + "px", "margin-bottom": "0px", "margin-right": "0px" }), "height" === i.limitingDimension.toLowerCase() && r.width(o.width() + 4 + "px"); var d = {}; switch (i.verticalAlign.toLowerCase()) { case "top": d.top = "0%"; break; case "bottom": d.top = "100%", d["margin-top"] = Math.floor(-o.innerHeight()) + "px"; break; default: d["margin-top"] = Math.floor(-o.innerHeight() / 2) + "px" }switch (i.horizontalAlign.toLowerCase()) { case "left": d.left = "0%"; break; case "right": d.left = "100%", d["margin-left"] = Math.floor(-o.innerWidth()) + "px"; break; default: d["margin-left"] = Math.floor(-o.innerWidth() / 2) + "px" }o.css(d), o.css("visibility", "visible") }) } }(jQuery);
 
 
 /* **********************************
@@ -35,8 +35,8 @@ $(".rotate").textrotator({
 
 // Set Content to Hidden Input
 
-$(function() {
-	$('#save').click(function() {
+$(function () {
+	$('#save').click(function () {
 		var mysave = $('.name').html();
 		$('#hiddeninput').val(mysave);
 	});
@@ -46,7 +46,7 @@ $(function() {
 
 // Focus on name
 
-$('#label').click(function(event) {
+$('#label').click(function (event) {
 
 	SetCaretAtEnd($(".name"));
 	theName.select();
@@ -57,7 +57,7 @@ $('#label').click(function(event) {
 });
 
 theName.focus(
-	function() {
+	function () {
 		SetCaretAtEnd($(".name"));
 		removeCaret();
 		theName.select();
@@ -80,8 +80,8 @@ theName.focus(
 // Blank when done rotating
 
 function setBlank() {
-	
-	setTimeout(function() {
+
+	setTimeout(function () {
 		rotateStop = true;
 		$('#container *').attr('contenteditable', 'true');
 		SetCaretAtEnd($(".name"));
@@ -106,7 +106,7 @@ function removeCaret() {
 
 // Rotate when press
 
-$('body').on('keydown', function() {
+$('body').on('keydown', function () {
 	var input = theName;
 
 	if (!input.is(':focus')) {
@@ -120,7 +120,7 @@ function SetCaretAtEnd(elem) {
 	var elemLen = 0;
 	try {
 		elem.value.length;
-	} catch (e) {};
+	} catch (e) { };
 	// For IE Only
 	if (document.selection) {
 		// Set focus
@@ -133,14 +133,14 @@ function SetCaretAtEnd(elem) {
 		oSel.moveEnd('character', 0);
 		oSel.select();
 	} else if (elem.selectionStart || elem.selectionStart == '0') {
-			// Firefox/Chrome
+		// Firefox/Chrome
 		elem.selectionStart = elemLen;
 		elem.selectionEnd = elemLen;
 		elem.focus();
 	}
 } // SetCaretAtEnd()
 
-var cursorFocus = function() {
+var cursorFocus = function () {
 	var x = window.scrollX,
 		y = window.scrollY;
 	window.scrollTo(x, y);
@@ -174,17 +174,17 @@ function updateHiddenSize() {
 function activeButtons() {
 	$('#sharebutton').attr("disabled", false);
 
-	$("#printbutton, #sharebutton, #sharebutton a, .sharePack").removeClass("disabled-button");
+	$("#printbutton, #sharebutton, #sharebutton a, .sharePack, #firstbuttons .button").removeClass("disabled-button");
 }
 
 function inactiveButtons() {
 	$('#sharebutton').attr("disabled", true);
 
-	$("#printbutton, #sharebutton, #sharebutton a, .sharePack").addClass("disabled-button");
+	$("#printbutton, #sharebutton, #sharebutton a, .sharePack, #firstbuttons .button").addClass("disabled-button");
 }
 
 function checkLength() {
-	if ($('.name').text().length = 0) {
+	if ($('.name').text().length == 0) {
 		inactiveButtons();
 	} else {
 		activeButtons();
@@ -195,7 +195,7 @@ function checkLength() {
    ::    TYPING
 ********************************** */
 
-$('.name').keydown(function(event) {
+$('.name').keydown(function (event) {
 
 	updateSize();
 	checkLength();
@@ -213,13 +213,13 @@ $('.name').keydown(function(event) {
 
 
 
-$('.name').keyup(function(event) {
+$('.name').keyup(function (event) {
 	updateSize();
 });
 
 
 
-$(".name").on("paste", function() {
+$(".name").on("paste", function () {
 	updateSize();
 });
 
@@ -244,7 +244,7 @@ function setNewButtons() {
 /* 2 SHARE SCREEN */
 
 // check if element is on screen
-$.fn.isOnScreen = function() {
+$.fn.isOnScreen = function () {
 	var win = $(window);
 
 	var viewport = {
@@ -274,14 +274,14 @@ function getFileName() {
 function downloadImage() {
 	var fileStart = "SmokingKills";
 	var fileName = fileStart.concat(currentCopy);
-	
+
 	ga('send', 'event', 'Downloads', 'download', currentCopy);
 
 	$("<a>", {
-			href: myImage,
-			download: fileName
-		})
-		.on("click", function() {
+		href: myImage,
+		download: fileName
+	})
+		.on("click", function () {
 			$(this).remove();
 		})
 		.appendTo("body")[0].click();
@@ -311,26 +311,26 @@ var tweetLink = "https://twitter.com/intent/tweet?text="
 var facebookLink = "https://www.facebook.com/sharer/sharer.php?u="
 var tumbleLink = "http://www.tumblr.com/share/link?url="
 
-window.onload = function() {
+window.onload = function () {
 
 	// refocus cursor
-	window.onclick = function() {
+	window.onclick = function () {
 		cursorFocus();
 	}
 
-	window.takeScreenShot = function(action) {
+	window.takeScreenShot = function (action) {
 
-		
+
 		currentCopy = $('.name').text();
 		currentCopyURL = currentCopy.replace(/ /g, "-");
-		
+
 		ga('send', 'event', action, currentCopy, currentCopy);
 
 		// posting
 		if (action == "tweet" || action == "facebook" || action == "tumble") {
 			if (currentCopy != "") {
-			shareWindow = window.open("", "_blank", "width=600, height=400, scrollbars=no");
-			shareWindow.document.write('<div style="font-family:sans-serif;">Personalising your link…<div>');
+				shareWindow = window.open("", "_blank", "width=600, height=400, scrollbars=no");
+				shareWindow.document.write('<div style="font-family:sans-serif;">Personalising your link…<div>');
 			}
 			else {
 				var shareLink = ""
@@ -343,15 +343,15 @@ window.onload = function() {
 				if (action == "tumble") {
 					shareLink = tumbleLink + baseURL
 				}
-			shareWindow = window.open(shareLink, "_blank", "width=600, height=400, scrollbars=no");
-			return;
-			window.focus();
+				shareWindow = window.open(shareLink, "_blank", "width=600, height=400, scrollbars=no");
+				return;
+				window.focus();
 			}
 		}
 
 		makeIconStartSpin(action);
 
-		
+
 
 		// get position of cig pack
 
@@ -370,7 +370,7 @@ window.onload = function() {
 
 		// take screengrab
 		html2canvas(div, {
-			onrendered: function(canvas) {
+			onrendered: function (canvas) {
 
 				$("#hidden-designer").css('display', 'none');
 				theCanvas = canvas;
@@ -393,7 +393,7 @@ window.onload = function() {
 							imgBase64: dataURL,
 							name: currentCopy
 						}
-					}).done(function(o) {
+					}).done(function (o) {
 						makeIconStopSpin();
 						var file = fileName + ".png";
 						var filePath = baseURL + "s.php?n=" + currentCopyURL;
@@ -423,4 +423,20 @@ window.onload = function() {
 		// scroll back to original position      
 		window.scrollTo(left, top);
 	}
+}
+
+// Simple print function for labels
+function printLabels() {
+	var name = $('.name').text().trim();
+
+	if (!name) {
+		alert('Please enter a name first!');
+		return;
+	}
+
+	// Update print labels
+	$('.print-name').text(name);
+
+	// Trigger print
+	window.print();
 }

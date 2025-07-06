@@ -32,6 +32,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="css/main-2.css" />
+    <link rel="stylesheet" href="css/print.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
     <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
 </head>
@@ -74,28 +75,14 @@
                 <div id="buttonandform" class="center">
 
                     <div style="margin-bottom: 1rem; margin-top: 0.5rem;">
-                        <span style="margin-bottom: 1rem; margin-top: 1rem; display: block; color: gray;">Share
-                            Pack:</span>
+                        <span
+                            style="margin-bottom: 1rem; margin-top: 1rem; display: block; color: gray;">Actions:</span>
                         <div style="margin-top:0;" class="button-group" id="firstbuttons">
-
-                            <button class="button" onclick="takeScreenShot('tweet')"><i id="tweet"
-                                    class="fa fa-lg fa-twitter shareIcon" aria-hidden="true"></i></button>
-                            <button class="button" onclick="takeScreenShot('facebook');"><i id="fbPost"
-                                    class="fa fa-lg fa-facebook shareIcon" aria-hidden="true"></i></button>
-
-
-                            <button class="button" onclick="takeScreenShot('save');"><i
-                                    class="fa fa-download fa-lg shareIcon" aria-hidden="true"></i><a> </a></button>
-                        </div><br>
-                        <span style="color: gray;">Print Label: </span>
-                    </div>
-                    <div style="margin-top:0;" id="firstbuttons">
-                        <form action="print.php" class="form-group" style="display: inline-block;">
-                            <textarea id="hiddeninput" name="name" style="display: none;"></textarea>
-                            <label for="save" class="button" id="printbutton"><i class="fa fa-print fa-lg"
-                                    aria-hidden="true" style="width: 17rem;"></i> </label>
-                            <input class="btn" type="submit" value="Print" id="save" style="display: none;" />
-                        </form>
+                            <button class="button" onclick="takeScreenShot('save')"><i
+                                    class="fa fa-download fa-lg shareIcon" aria-hidden="true"></i> Download</button>
+                            <button class="button" onclick="printLabels()"><i class="fa fa-print fa-lg"
+                                    aria-hidden="true"></i> Print</button>
+                        </div>
                     </div>
 
 
@@ -198,6 +185,42 @@
         </div>
 
     </section>
+
+    <!-- Print View (Hidden) -->
+    <div id="print-view" style="display: none;">
+        <div class="print-page">
+            <div class="print-labels">
+                <div class="print-label-section">
+                    <div class="print-label">
+                        <p>Smoking<br>kills<br></p>
+                        <div class="print-namewrapper">
+                            <span class="print-name"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="print-label-section">
+                    <div class="print-label">
+                        <p>Smoking<br>kills<br></p>
+                        <div class="print-namewrapper">
+                            <span class="print-name"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="print-label-section">
+                    <div class="print-label">
+                        <p>Smoking<br>kills<br></p>
+                        <div class="print-namewrapper">
+                            <span class="print-name"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="print-footer">
+                <img src="img/diagram4.png" alt="Instructions">
+                <p class="instruction">Cut out label and slide under pack plastic</p>
+            </div>
+        </div>
+    </div>
 
     <!-- Footer -->
 
