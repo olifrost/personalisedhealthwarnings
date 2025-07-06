@@ -13,8 +13,6 @@ jQuery BigText v1.3.0, May 2014
    1 ::    TEXT ROTATOR
 ********************************** */
 var currentCopy = "";
-var currentCopyURL = "";
-var baseURL = "http://personalwarnings.oliandjosie.com/";
 
 //Text Rotator
 var rotateStop = false;
@@ -287,29 +285,15 @@ function downloadImage() {
 		.appendTo("body")[0].click();
 }
 
-var shareWindow
-
 function makeIconStartSpin(action) {
-	if (action == "facebook") {
-		$(".fa-facebook").addClass("fa-circle-o-notch fa-spin fa-fw");
-	}
-	if (action == "tweet") {
-		$(".fa-twitter").addClass("fa-circle-o-notch fa-spin fa-fw");
-	}
 	if (action == "save") {
 		$(".fa-download").addClass("fa-circle-o-notch fa-spin fa-fw");
 	}
-
 }
 
 function makeIconStopSpin() {
-	$(".sharePack").removeClass("fa-circle-o-notch fa-spin fa-fw");
 	$(".shareIcon").removeClass("fa-circle-o-notch fa-spin fa-fw");
 }
-
-var tweetLink = "https://twitter.com/intent/tweet?text="
-var facebookLink = "https://www.facebook.com/sharer/sharer.php?u="
-var tumbleLink = "http://www.tumblr.com/share/link?url="
 
 window.onload = function () {
 
@@ -319,48 +303,17 @@ window.onload = function () {
 	}
 
 	window.takeScreenShot = function (action) {
-
-
 		currentCopy = $('.name').text();
-		currentCopyURL = currentCopy.replace(/ /g, "-");
-
-		// ga('send', 'event', action, currentCopy, currentCopy); // Commented out as GA not available
-
-		// posting
-		if (action == "tweet" || action == "facebook" || action == "tumble") {
-			if (currentCopy != "") {
-				shareWindow = window.open("", "_blank", "width=600, height=400, scrollbars=no");
-				shareWindow.document.write('<div style="font-family:sans-serif;">Personalising your link…<div>');
-			}
-			else {
-				var shareLink = ""
-				if (action == "tweet") {
-					shareLink = tweetLink + baseURL
-				}
-				if (action == "facebook") {
-					shareLink = facebookLink + baseURL
-				}
-				if (action == "tumble") {
-					shareLink = tumbleLink + baseURL
-				}
-				shareWindow = window.open(shareLink, "_blank", "width=600, height=400, scrollbars=no");
-				return;
-				window.focus();
-			}
-		}
 
 		makeIconStartSpin(action);
 
-
-
 		// get position of cig pack
-
 		var doc = document.documentElement;
 		var left = (window.pageXOffset || doc.scrollLeft) - (doc.clientLeft || 0);
 		var top = (window.pageYOffset || doc.scrollTop) - (doc.clientTop || 0);
 		var div = $('#hidden-pack');
 
-		// scroll lbImgto it
+		// scroll to it
 		var position = div.position();
 		window.scrollTo(0, 0);
 
@@ -368,60 +321,26 @@ window.onload = function () {
 		$("#hidden-designer").css('display', 'block');
 		updateSize();
 
-		// take screengrab
-		html2canvas(div, {
-			onrendered: function (canvas) {
+		// take screengrab with modern html2canvas
+		html2canvas(div[0]).then(function (canvas) {
+			$("#hidden-designer").css('display', 'none');
+			theCanvas = canvas;
+			myImage = canvas.toDataURL('image/png');
 
-				$("#hidden-designer").css('display', 'none');
-				theCanvas = canvas;
-				myImage = canvas.toDataURL('image/png');
-
-				if (action == "save") {
-					makeIconStopSpin();
-					downloadImage();
-				}
-
-				if (action == "tweet" || action == "facebook" || action == "tumble") {
-
-					var dataURL = theCanvas.toDataURL();
-					var fileName = getFileName()
-
-					$.ajax({
-						type: "POST",
-						url: "save.php",
-						data: {
-							imgBase64: dataURL,
-							name: currentCopy
-						}
-					}).done(function (o) {
-						makeIconStopSpin();
-						var file = fileName + ".png";
-						var filePath = baseURL + "s.php?n=" + currentCopyURL;
-
-						var defaultMessage = "Personalise a Health Warning";
-						var hashtag = " %23WorldCancerDay ";
-						var encodedMessage = encodeURI(defaultMessage) + hashtag + filePath;
-						var shareLink = "";
-						if (action == "tweet") {
-							var shareLink = tweetLink + encodedMessage;
-						}
-						if (action == "facebook") {
-							var shareLink = facebookLink + filePath;
-						}
-						if (action == "tumble") {
-							var shareLink = tumbleLink + filePath;
-						}
-						shareWindow.location.href = shareLink;
-
-
-					});
-
-				}
-
+			if (action == "save") {
+				makeIconStopSpin();
+				downloadImage();
 			}
+
+			// scroll back to original position      
+			window.scrollTo(left, top);
+		}).catch(function (error) {
+			console.error('html2canvas error:', error);
+			makeIconStopSpin();
+			alert('Error generating image. Please try again.');
+			// scroll back to original position      
+			window.scrollTo(left, top);
 		});
-		// scroll back to original position      
-		window.scrollTo(left, top);
 	}
 }
 
