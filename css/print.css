@@ -97,15 +97,30 @@
 }
 
 @media print {
+    /* Hide everything by default */
     body * {
-        visibility: hidden;
+        visibility: hidden !important;
     }
-
+    
+    /* Show only the print view */
     #print-view,
     #print-view * {
-        visibility: visible;
+        visibility: visible !important;
     }
-
+    
+    /* Force hide specific elements that might interfere */
+    #hidden-designer,
+    #hidden-designer *,
+    .hidden-name,
+    #hidden-name,
+    #hidden-namewrapper,
+    #hidden-label,
+    #hidden-box,
+    #hidden-pack {
+        visibility: hidden !important;
+        display: none !important;
+    }
+    
     #print-view {
         position: absolute;
         left: 0;
@@ -114,7 +129,7 @@
         height: 100%;
         display: block !important;
     }
-
+    
     .print-page {
         margin: 0;
         border: initial;
@@ -123,9 +138,9 @@
         min-height: initial;
         box-shadow: initial;
         background: initial;
-        page-break-after: always;
+        page-break-after: avoid;
     }
-
+    
     html,
     body {
         width: 210mm;

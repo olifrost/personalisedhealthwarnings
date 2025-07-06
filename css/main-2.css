@@ -1076,3 +1076,57 @@ ul.share-buttons li {
 
 /* MODAL */
 
+/* Recently Created Dropdown Styles */
+.recently-created-section {
+    margin: 2rem 0;
+}
+
+.toggle-header {
+    cursor: pointer;
+    color: #888;
+    transition: color 0.3s ease;
+    user-select: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.toggle-header:hover {
+    color: #555;
+}
+
+.toggle-icon {
+    transition: transform 0.3s ease;
+    font-size: 0.8em;
+}
+
+.toggle-icon.rotated {
+    transform: rotate(180deg);
+}
+
+.recently-created-content {
+    margin-top: 2rem;
+    animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.recently-created-content .center-pack {
+    margin: 1rem;
+    transition: transform 0.2s ease;
+}
+
+.recently-created-content .center-pack:hover {
+    transform: scale(1.05);
+}
+
