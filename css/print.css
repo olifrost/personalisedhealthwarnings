@@ -97,17 +97,18 @@
 }
 
 @media print {
+
     /* Hide everything by default */
     body * {
         visibility: hidden !important;
     }
-    
+
     /* Show only the print view */
     #print-view,
     #print-view * {
         visibility: visible !important;
     }
-    
+
     /* Force hide specific elements that might interfere */
     #hidden-designer,
     #hidden-designer *,
@@ -120,7 +121,7 @@
         visibility: hidden !important;
         display: none !important;
     }
-    
+
     #print-view {
         position: absolute;
         left: 0;
@@ -129,7 +130,7 @@
         height: 100%;
         display: block !important;
     }
-    
+
     .print-page {
         margin: 0;
         border: initial;
@@ -140,11 +141,19 @@
         background: initial;
         page-break-after: avoid;
     }
-    
+
     html,
     body {
         width: 210mm;
         height: 297mm;
         background-color: white;
+    }
+
+    /* Force specific fonts for print */
+    .print-label,
+    .print-name,
+    .print-label p {
+        font-family: Arial, sans-serif !important;
+        font-weight: bold !important;
     }
 }

@@ -442,17 +442,17 @@ function printLabels() {
 }
 
 // Recently Created dropdown toggle
-$(document).ready(function() {
-    $('#recently-created-toggle').click(function() {
-        var content = $('#recently-created-content');
-        var icon = $('.toggle-icon');
-        
-        if (content.is(':visible')) {
-            content.slideUp(300);
-            icon.removeClass('rotated');
-        } else {
-            content.slideDown(300);
-            icon.addClass('rotated');
-        }
-    });
+$(document).ready(function () {
+	$('#recently-created-toggle').click(function () {
+		var content = $('#recently-created-content');
+		var icon = $('.toggle-icon');
+
+		if (content.is(':visible')) {
+			content.slideUp(300);
+			icon.removeClass('rotated');
+		} else {
+			content.slideDown(300);
+			icon.addClass('rotated');
+		}
+	});
 });

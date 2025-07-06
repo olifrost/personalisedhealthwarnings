@@ -711,12 +711,12 @@ h1 {
 }
 
 .grid-hero {
-    margin-top: -2.5rem;
+    margin-top: 0rem;
 }
 
 @media (min-width: 750px) {
     .grid-hero {
-        margin-top: -1.5rem;
+        margin-top: 0rem;
         margin-bottom: 0.25rem;
     }
 }
@@ -1086,10 +1086,10 @@ ul.share-buttons li {
     color: #888;
     transition: color 0.3s ease;
     user-select: none;
-    display: flex;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 0.5rem;
+    gap: 0.3rem;
 }
 
 .toggle-header:hover {
@@ -1098,7 +1098,9 @@ ul.share-buttons li {
 
 .toggle-icon {
     transition: transform 0.3s ease;
-    font-size: 0.8em;
+    font-size: 0.6em;
+    opacity: 0.6;
+    margin-left: 0.3rem;
 }
 
 .toggle-icon.rotated {
@@ -1115,6 +1117,7 @@ ul.share-buttons li {
         opacity: 0;
         transform: translateY(-10px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -1129,4 +1132,3 @@ ul.share-buttons li {
 .recently-created-content .center-pack:hover {
     transform: scale(1.05);
 }
-
