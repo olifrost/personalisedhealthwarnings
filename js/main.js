@@ -275,7 +275,7 @@ function downloadImage() {
 	var fileStart = "SmokingKills";
 	var fileName = fileStart.concat(currentCopy);
 
-	ga('send', 'event', 'Downloads', 'download', currentCopy);
+	// ga('send', 'event', 'Downloads', 'download', currentCopy); // Commented out as GA not available
 
 	$("<a>", {
 		href: myImage,
@@ -324,7 +324,7 @@ window.onload = function () {
 		currentCopy = $('.name').text();
 		currentCopyURL = currentCopy.replace(/ /g, "-");
 
-		ga('send', 'event', action, currentCopy, currentCopy);
+		// ga('send', 'event', action, currentCopy, currentCopy); // Commented out as GA not available
 
 		// posting
 		if (action == "tweet" || action == "facebook" || action == "tumble") {
@@ -434,8 +434,8 @@ function printLabels() {
 		return;
 	}
 
-	// Update print labels
-	$('.print-name').text(name);
+	// Update only the print labels (not other instances of .name)
+	$('#print-view .print-name').text(name);
 
 	// Trigger print
 	window.print();
